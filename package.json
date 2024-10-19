@@ -1,13 +1,13 @@
 {
-  "name": "myTestGulp",
+  "name": "gulp_ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "gulp + type script + webpack",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dmytro Kazarov",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -34,5 +34,9 @@
     "gulp-uglify": "^3.0.2",
     "sass": "^1.37.5",
     "typescript": "^4.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/dkazarov/gulp_ts.git"
   }
 }
