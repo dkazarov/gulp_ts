@@ -1,3 +1,3 @@
-import burger from './components/burger';
+import burger from './js-components/burger';
 
 burger();

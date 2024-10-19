@@ -20,11 +20,12 @@ const newer = require('gulp-newer');
 const browsersync = require('browser-sync').create();
 const del = require('del');
 const webpack = require('webpack-stream');
+const fileinclude = require('gulp-file-include');
 
 // Пути исходных файлов src и пути к результирующим файлам dest
 const paths = {
 	html: {
-		src: ['src/*.html', 'src/*.pug'],
+		src: ['src/pages/*.html', 'src/*.pug'],
 		dest: 'dist/',
 	},
 	styles: {
@@ -58,6 +59,12 @@ function html() {
 		gulp
 			.src(paths.html.src)
 			//.pipe(gulppug())
+			.pipe(
+				fileinclude({
+					prefix: '@',
+					basepath: '@file',
+				}),
+			)
 			.pipe(htmlmin({ collapseWhitespace: true }))
 			.pipe(
 				size({
@@ -68,6 +75,10 @@ function html() {
 			.pipe(browsersync.stream())
 	);
 }
+
+// const pages = () => {
+// 	return src('src/html-components/**/*.html').pipe(browsersync.stream());
+// };
 
 // Обработка препроцессоров стилей
 function styles() {
@@ -164,6 +175,7 @@ function watch() {
 	});
 	gulp.watch(paths.html.dest).on('change', browsersync.reload);
 	gulp.watch(paths.html.src, html);
+	gulp.watch(['src/html-components/*.html', 'src/pages/*html'], html).on('all', browsersync.reload);
 	gulp.watch(paths.styles.src, styles);
 	gulp.watch(paths.scripts.src, scripts);
 	gulp.watch(paths.images.src, img);
@@ -173,6 +185,8 @@ function watch() {
 exports.clean = clean;
 
 exports.html = html;
+
+// exports.pages = pages;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.img = img;
