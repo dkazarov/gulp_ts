@@ -1,6 +1,6 @@
-const burger = () => {
-	const hello: string = 'Hello Type script';
-	console.log(hello);
-};
+// const burger = () => {
+// 	const hello: string = 'Hello Type script';
+// 	console.log(hello);
+// };
 
-export default burger;
+// export default burger;
