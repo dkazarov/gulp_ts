@@ -88,6 +88,7 @@ function styles() {
 		gulp
 			.src(paths.styles.src)
 			.pipe(sourcemaps.init())
+			.pipe(concat('style.min.css'))
 			//.pipe(less())
 			//.pipe(stylus())
 			.pipe(sass().on('error', sass.logError))
@@ -99,12 +100,6 @@ function styles() {
 			.pipe(
 				cleanCSS({
 					level: 2,
-				}),
-			)
-			.pipe(
-				rename({
-					basename: 'style',
-					suffix: '.min',
 				}),
 			)
 			.pipe(sourcemaps.write('.'))
