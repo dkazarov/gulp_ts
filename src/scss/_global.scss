@@ -1,0 +1,32 @@
+body {
+	height: 100%;
+	min-width: 320px;
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+	height: 100%;
+	font-family: $main-font, 'Open Sans';
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 23px;
+}
+.wrapper {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+.container {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 15px;
+	flex-grow: 1;
+}
+.main {
+}
+.header {
+	position: sticky;
+}
+
+.footer {
+	margin-top: auto;
+}
