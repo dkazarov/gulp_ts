@@ -25,7 +25,7 @@ const fileinclude = require('gulp-file-include');
 // Пути исходных файлов src и пути к результирующим файлам dest
 const paths = {
 	html: {
-		src: ['src/pages/*.html', 'src/*.pug'],
+		src: ['src/html/*.html', 'src/*.pug'],
 		dest: 'dist/',
 	},
 	styles: {
@@ -175,7 +175,7 @@ function watch() {
 	});
 	gulp.watch(paths.html.dest).on('change', browsersync.reload);
 	gulp.watch(paths.html.src, html);
-	gulp.watch(['src/html-components/*.html', 'src/pages/*html'], html).on('all', browsersync.reload);
+	gulp.watch(['src/html/html-components/*.html', 'src/html/*html'], html).on('all', browsersync.reload);
 	gulp.watch(paths.styles.src, styles);
 	gulp.watch(paths.scripts.src, scripts);
 	gulp.watch(paths.images.src, img);
