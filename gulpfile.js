@@ -21,6 +21,8 @@ const browsersync = require('browser-sync').create();
 const del = require('del');
 const webpack = require('webpack-stream');
 const fileinclude = require('gulp-file-include');
+const webp = require('gulp-webp');
+const webpHTML = require('gulp-webp-html');
 
 // Пути исходных файлов src и пути к результирующим файлам dest
 const paths = {
@@ -153,6 +155,8 @@ function img() {
 	return gulp
 		.src(paths.images.src)
 		.pipe(newer(paths.images.dest))
+		.pipe(webp())
+		.pipe(webpHTML())
 		.pipe(
 			imagemin({
 				progressive: true,
@@ -175,7 +179,9 @@ function watch() {
 	});
 	gulp.watch(paths.html.dest).on('change', browsersync.reload);
 	gulp.watch(paths.html.src, html);
-	gulp.watch(['src/html/html-components/*.html', 'src/html/*html'], html).on('all', browsersync.reload);
+	gulp
+		.watch(['src/html/html-components/*.html', 'src/html/*html'], html)
+		.on('all', browsersync.reload);
 	gulp.watch(paths.styles.src, styles);
 	gulp.watch(paths.scripts.src, scripts);
 	gulp.watch(paths.images.src, img);

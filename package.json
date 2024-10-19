@@ -34,6 +34,8 @@
     "gulp-stylus": "^2.7.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
+    "gulp-webp": "^4.0.1",
+    "gulp-webp-html": "^1.0.2",
     "sass": "^1.49.9",
     "ts-loader": "^9.5.1",
     "typescript": "^4.9.5",
