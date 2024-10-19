@@ -19,6 +19,7 @@ const size = require('gulp-size');
 const newer = require('gulp-newer');
 const browsersync = require('browser-sync').create();
 const del = require('del');
+const webpack = require('webpack-stream');
 
 // Пути исходных файлов src и пути к результирующим файлам dest
 const paths = {
@@ -111,18 +112,19 @@ function scripts() {
 			.src(paths.scripts.src)
 			// .pipe(sourcemaps.init())
 			//.pipe(coffee({bare: true}))
-			.pipe(
-				ts({
-					noImplicitAny: true,
-					outFile: 'main.min.js',
-				}),
-			)
-			.pipe(
-				babel({
-					presets: ['@babel/env'],
-				}),
-			)
-			.pipe(uglify())
+			.pipe(webpack(require('./webpack.config.js')))
+			// .pipe(
+			// 	ts({
+			// 		noImplicitAny: true,
+			// 		outFile: 'main.min.js',
+			// 	}),
+			// )
+			// .pipe(
+			// 	babel({
+			// 		presets: ['@babel/env'],
+			// 	}),
+			// )
+			// .pipe(uglify())
 			// .pipe(concat('main.min.js'))
 			// .pipe(sourcemaps.write('.'))
 			.pipe(

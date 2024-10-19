@@ -1,3 +1,3 @@
-const hello: string[] = ['Hello Type Script'];
+import burger from './components/burger';
 
-console.log(hello);
+burger();
