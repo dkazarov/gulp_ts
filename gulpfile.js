@@ -156,12 +156,12 @@ function img() {
 		.src(paths.images.src)
 		.pipe(newer(paths.images.dest))
 		.pipe(webp())
-		.pipe(webpHTML())
 		.pipe(
 			imagemin({
 				progressive: true,
 			}),
 		)
+		.pipe(webpHTML())
 		.pipe(
 			size({
 				showFiles: true,

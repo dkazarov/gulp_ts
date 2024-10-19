@@ -22,9 +22,11 @@ body {
 	flex-grow: 1;
 }
 .main {
+	
 }
 .header {
 	position: sticky;
+	z-index: 10;
 }
 
 .footer {
