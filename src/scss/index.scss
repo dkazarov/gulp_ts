@@ -4,6 +4,18 @@
 @import 'global';
 @import 'fonts';
 @import 'header';
-@import './scss-components/burger';
-@import './media/media_header';
 @import 'footer';
+
+
+//Vendor
+
+
+
+// Presets
+
+@import './scss-components/burger';
+@import './scss-components/presets';
+
+//Media
+
+@import './media/media_header';

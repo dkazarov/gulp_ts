@@ -41,7 +41,7 @@ const paths = {
 		dest: 'dist/css/',
 	},
 	scripts: {
-		src: ['src/js/**/*.coffee', 'src/js/**/*.ts', 'src/js/**/*.js'],
+		src: ['src/js/**/*.ts', 'src/js/**/*.js', 'src/js/**/*.coffee'],
 		dest: 'dist/js/',
 	},
 	images: {
@@ -67,6 +67,7 @@ function html() {
 					basepath: '@file',
 				}),
 			)
+			.pipe(webpHTML())
 			.pipe(htmlmin({ collapseWhitespace: true }))
 			.pipe(
 				size({
@@ -77,10 +78,6 @@ function html() {
 			.pipe(browsersync.stream())
 	);
 }
-
-// const pages = () => {
-// 	return src('src/html-components/**/*.html').pipe(browsersync.stream());
-// };
 
 // Обработка препроцессоров стилей
 function styles() {
@@ -146,24 +143,37 @@ function scripts() {
 }
 
 // Сжатие изображений
-function img() {
+const img = () => {
 	return gulp
 		.src(paths.images.src)
 		.pipe(newer(paths.images.dest))
 		.pipe(webp())
+		.pipe(newer(paths.images.dest))
+		.pipe(gulp.src(paths.images.src))
+		.pipe(newer(paths.images.dest))
 		.pipe(
-			imagemin({
-				progressive: true,
-			}),
+			imagemin(
+				{
+					verbose: true,
+				},
+				[
+					imagemin.gifsicle({ interlaced: true }),
+					imagemin.mozjpeg({ quality: 75, progressive: true }),
+					imagemin.optipng({ optimizationLevel: 3 }),
+					imagemin.svgo({
+						plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+					}),
+				],
+			),
 		)
-		.pipe(webpHTML())
 		.pipe(
 			size({
 				showFiles: true,
 			}),
 		)
-		.pipe(gulp.dest(paths.images.dest));
-}
+		.pipe(gulp.dest(paths.images.dest))
+		.pipe(browsersync.stream());
+};
 
 // Отслеживание изменений в файлах и запуск лайв сервера
 function watch() {
@@ -174,9 +184,7 @@ function watch() {
 	});
 	gulp.watch(paths.html.dest).on('change', browsersync.reload);
 	gulp.watch(paths.html.src, html);
-	gulp
-		.watch(['src/html-components/*.html', 'src/*html'], html)
-		.on('all', browsersync.reload);
+	gulp.watch(['src/html-components/*.html', 'src/*html'], html).on('all', browsersync.reload);
 	gulp.watch(paths.styles.src, styles);
 	gulp.watch(paths.scripts.src, scripts);
 	gulp.watch(paths.images.src, img);
