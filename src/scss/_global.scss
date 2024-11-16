@@ -3,7 +3,6 @@ body {
 	min-width: 320px;
 	scroll-behavior: smooth;
 	overflow-x: hidden;
-	height: 100%;
 	font-family: $main-font, 'Open Sans';
 	font-weight: 400;
 	font-size: 16px;
@@ -23,10 +22,14 @@ body {
 	overflow: hidden;
 }
 .header {
-	position: sticky;
+	position: fixed;
+	background-color: $header-color;
+	width: 100%;
 	z-index: 10;
 }
-
+.main {
+	padding-top: 100px;
+}
 .footer {
 	margin-top: auto;
 }
