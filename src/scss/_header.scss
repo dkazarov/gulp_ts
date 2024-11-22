@@ -1,4 +1,8 @@
 .header {
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+
 	&__inner {
 		display: flex;
 		justify-content: space-between;
@@ -6,7 +10,7 @@
 		padding: 0 20px;
 		height: 100px;
 		width: 100%;
-		background-color: cornflowerblue;
+		background-color: $header-color;
 	}
 }
 
