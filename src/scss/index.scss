@@ -5,11 +5,10 @@
 @import 'fonts';
 @import 'header';
 @import 'hero';
+
 @import 'footer';
 
-
 //Vendor
-
 
 
 // Presets
@@ -17,6 +16,10 @@
 @import './scss-components/burger';
 @import './scss-components/presets';
 
+
 //Media
 
 @import './media/media_header';
+@import './media/media-hero';
+
+@import './media/media-footer';

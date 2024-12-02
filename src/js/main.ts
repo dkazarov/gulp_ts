@@ -1,3 +1,3 @@
-import burgerClick from './js-components/burger';
+import { burgerOpen } from './js-components/burger';
 
-burgerClick();
+burgerOpen();

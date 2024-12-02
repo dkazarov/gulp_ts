@@ -4,7 +4,6 @@ const less = require('gulp-less');
 const stylus = require('gulp-stylus');
 const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename');
-const cleanCSS = require('gulp-clean-css');
 const ts = require('gulp-typescript');
 //const coffee = require('gulp-coffee')
 const babel = require('gulp-babel');
@@ -23,6 +22,7 @@ const webpack = require('webpack-stream');
 const fileinclude = require('gulp-file-include');
 const webp = require('gulp-webp');
 const webpHTML = require('gulp-webp-html');
+const cssnano = require('gulp-cssnano');
 
 // Пути исходных файлов src и пути к результирующим файлам dest
 const paths = {
@@ -68,7 +68,7 @@ function html() {
 				}),
 			)
 			.pipe(webpHTML())
-			.pipe(htmlmin({ collapseWhitespace: true }))
+			// .pipe(htmlmin({ collapseWhitespace: true }))
 			.pipe(
 				size({
 					showFiles: true,
@@ -94,11 +94,7 @@ function styles() {
 					cascade: false,
 				}),
 			)
-			.pipe(
-				cleanCSS({
-					level: 2,
-				}),
-			)
+			// .pipe(cssnano())
 			.pipe(sourcemaps.write('.'))
 			.pipe(
 				size({

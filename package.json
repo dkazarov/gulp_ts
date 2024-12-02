@@ -1,7 +1,7 @@
 {
-	"name": "gulp_ts",
+	"name": "gulp_ts_for_wp",
 	"version": "1.0.0",
-	"description": "gulp + type script + webpack",
+	"description": "gulp + type script + webpack for wp",
 	"main": "index.js",
 	"homepage": "https://dkazarov.github.io/___________.git",
 	"scripts": {
@@ -20,9 +20,9 @@
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^8.0.0",
 		"gulp-babel": "^8.0.0",
-		"gulp-clean-css": "^4.3.0",
 		"gulp-coffee": "^3.0.3",
 		"gulp-concat": "^2.6.1",
+		"gulp-cssnano": "^2.1.3",
 		"gulp-file-include": "^2.3.0",
 		"gulp-htmlmin": "^5.0.1",
 		"gulp-imagemin": "^7.1.0",
