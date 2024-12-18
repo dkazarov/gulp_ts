@@ -505,11 +505,6 @@ body {
   display: block;
 }
 
-@media (max-width: 767px) {
-  .burger {
-    display: block;
-  }
-}
 @font-face {
   font-family: "Inter";
   font-weight: 400;
@@ -961,11 +956,6 @@ template {
   display: none;
 }
 
-@media (max-width: 767px) {
-  .burger {
-    display: block;
-  }
-}
 .burger {
   position: relative;
   width: 30px;

@@ -48,6 +48,10 @@ const paths = {
 		src: 'src/assets/**',
 		dest: 'dist/assets/',
 	},
+	fonts: {
+		src: 'src/fonts/**',
+		dest: 'dist/fonts/',
+	},
 };
 
 // Очистить каталог dist, удалить все кроме изображений
@@ -171,6 +175,10 @@ const img = () => {
 		.pipe(browsersync.stream());
 };
 
+function fonts() {
+	return gulp.src(paths.fonts.src).pipe(newer(paths.images.dest)).pipe(gulp.dest(paths.fonts.dest));
+}
+
 // Отслеживание изменений в файлах и запуск лайв сервера
 function watch() {
 	browsersync.init({
@@ -184,6 +192,7 @@ function watch() {
 	gulp.watch(paths.styles.src, styles);
 	gulp.watch(paths.scripts.src, scripts);
 	gulp.watch(paths.images.src, img);
+	gulp.watch(paths.fonts.src, fonts);
 }
 
 // Таски для ручного запуска с помощью gulp clean, gulp html и т.д.
@@ -195,7 +204,8 @@ exports.html = html;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.img = img;
+exports.fonts = fonts;
 exports.watch = watch;
 
 // Таск, который выполняется по команде gulp
-exports.default = gulp.series(clean, html, gulp.parallel(styles, scripts, img), watch);
+exports.default = gulp.series(clean, fonts, html, gulp.parallel(styles, scripts, img), watch);
